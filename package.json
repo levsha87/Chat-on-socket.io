@@ -1,0 +1,26 @@
+{
+  "name": "chat-on-socket.io",
+  "version": "1.0.0",
+  "description": "chat on socket.io",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "socket.io": "^3.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/levsha87/Chat-on-socket.io.git"
+  },
+  "author": "RMLevsha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/levsha87/Chat-on-socket.io/issues"
+  },
+  "homepage": "https://github.com/levsha87/Chat-on-socket.io#readme"
+}
