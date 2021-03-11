@@ -8,9 +8,11 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-  socket.on('chat message', msg => {
+    socket.username = 'Anonnymous';
+    console.log(socket.username);
+    socket.on('chat message', msg => {
     io.emit('chat message', msg);
-  });
+    });
 });
 
 http.listen(port, () => {
