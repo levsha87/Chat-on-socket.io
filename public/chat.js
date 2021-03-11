@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Socket.IO chat</title>
-    <link rel="stylesheet" href="./style.css" type="text/css">
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
-    </form>
-    <script src="/socket.io/socket.io.js"></script>
-
-    <script>
-      var socket = io();
+var socket = io();
 
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
@@ -32,6 +18,3 @@
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
       });
-    </script>
-  </body>
-</html>

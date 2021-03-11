@@ -3,12 +3,17 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs');
+
+app.use(require('express').static('public'));
+
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.render('index.ejs');
 });
 
+
 io.on('connection', (socket) => {
-    socket.username = 'Anonnymous';
+    socket.username = 'User';
     console.log(socket.username);
     socket.on('chat message', msg => {
     io.emit('chat message', msg);
