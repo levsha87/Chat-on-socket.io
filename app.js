@@ -1,6 +1,6 @@
 const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
@@ -13,13 +13,24 @@ app.get('/', (req, res) => {
 
 
 io.on('connection', (socket) => {
-    socket.username = 'User';
+  socket.username = 'U - ' + (socket.id).toString().substr(1,4);
+    socket.broadcast.emit('newUser', socket.username);
+    socket.emit('userName', socket.username);
     console.log(socket.username);
-    socket.on('chat message', msg => {
-    io.emit('chat message', msg);
-    });
+
+    socket.on('change username', (data) => {
+      socket.username = data.username;
+      console.log(socket.username);
+  });
+
+    socket.on('chat message', (msg, username) => {
+      console.log(msg, username);
+      io.emit('add message', msg, username);
+      });
+
+      
 });
 
-http.listen(port, () => {
+server.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
