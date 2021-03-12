@@ -13,21 +13,25 @@ app.get('/', (req, res) => {
 
 
 io.on('connection', (socket) => {
-  socket.username = 'U - ' + (socket.id).toString().substr(1,4);
-    socket.broadcast.emit('newUser', socket.username);
-    socket.emit('userName', socket.username);
-    console.log(socket.username);
-
+    
     socket.on('change username', (data) => {
       socket.username = data.username;
-      console.log(socket.username);
-  });
+      socket.emit('userName', socket.username);
+      socket.broadcast.emit('newUser', socket.username);
+    });
 
-    socket.on('chat message', (msg, username) => {
-      console.log(msg, username);
-      io.emit('add message', msg, username);
+    socket.on('new message', (msg, username) => {
+      console.log(msg, socket.username);
+      io.emit('add message', {msg: msg, username: socket.username});
       });
 
+      socket.on('typing', (data) => {
+        socket.broadcast.emit('typing', {username : socket.username});
+      });
+      
+      socket.on('typing', (data) => {
+        socket.broadcast.emit('!typing', {username : socket.username});
+      });
       
 });
 
