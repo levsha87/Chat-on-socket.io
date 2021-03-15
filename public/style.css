@@ -114,6 +114,35 @@ padding: 0;
   padding: 0.5rem 1rem;
 }
 
-#messages > li:nth-child(odd) {
-  background: #efefef;
+/* ---------------------------стили для экранов max-width 991px-----------------------*/
+@media screen and (max-width: 991px) {
+  #form_username { 
+    width: 60%;
+  }
+
+}
+/* ---------------------------стили для экранов max-width 767px-----------------------*/
+
+@media screen and (max-width: 767px) {
+  #form_username { 
+    width: 80%;
+  }
+
+  #form_username > button {
+    line-height: 1;
+    font-size: 14px;
+  }
+}
+/* ---------------------------стили для экранов max-width 479px-----------------------*/
+
+@media screen and (max-width: 479px) {
+  #form_username { 
+    width: 100%;
+  }
+
+  #form_username > button {
+    line-height: 1;
+    font-size: 12px;
+    padding: 0 0.3rem;
+  }
 }

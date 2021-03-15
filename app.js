@@ -20,9 +20,9 @@ io.on('connection', (socket) => {
       socket.broadcast.emit('newUser', socket.username);
     });
 
-    socket.on('new message', (msg, username) => {
-      console.log(msg, socket.username);
-      io.emit('add message', {msg: msg, username: socket.username});
+    socket.on('new message', (data) => {
+      console.log(data.msg, data.username);
+      io.emit('add message', {msg: data.msg, username:  data.username, bgColor: data.bgColor});
       });
 
       socket.on('typing', (data) => {
